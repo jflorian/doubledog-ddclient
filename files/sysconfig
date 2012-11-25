@@ -1,0 +1,7 @@
+## Origin: modules/ddclient/files/sysconfig
+#
+# ddclient service options, see ddclient --help for what's available.
+#
+
+# Most everything should be managed in /etc/ddclient.conf, not here.
+DDCLIENT_OPTIONS=""
