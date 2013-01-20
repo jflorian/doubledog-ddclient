@@ -29,7 +29,7 @@ class ddclient ( $conf_source ) {
     file { '/etc/ddclient.conf':
         owner   => 'ddclient',
         group   => 'ddclient',
-        mode    => '0440',
+        mode    => '0600',
         seltype => 'ddclient_etc_t',
         source  => "${conf_source}",
     }
