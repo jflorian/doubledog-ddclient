@@ -4,9 +4,9 @@
 #       Configures a host to run a ddclient daemon.
 
 
-class ddclient ( $conf_source ) {
+class ddclient ( $content=undef ) {
 
-    include ddclient::params
+    include 'ddclient::params'
 
     package { $ddclient::params::packages:
         ensure  => installed,
@@ -31,7 +31,7 @@ class ddclient ( $conf_source ) {
         group   => 'ddclient',
         mode    => '0600',
         seltype => 'ddclient_etc_t',
-        source  => "${conf_source}",
+        content => "${content}",
     }
 
     service { $ddclient::params::service_name:
