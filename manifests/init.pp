@@ -35,8 +35,8 @@ class ddclient ( $content=undef ) {
     }
 
     service { $ddclient::params::service_name:
-        enable     => true,
         ensure     => running,
+        enable     => true,
         hasrestart => true,
         hasstatus  => true,
         subscribe  => [
