@@ -18,7 +18,8 @@
 class ddclient::params {
 
     case $::operatingsystem {
-        Fedora: {
+
+        'Fedora': {
 
             $service_name = 'ddclient'
             $packages = [
