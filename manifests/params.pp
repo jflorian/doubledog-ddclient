@@ -29,7 +29,7 @@ class ddclient::params {
         }
 
         default: {
-            fail ("The ddclient module is not yet supported on ${operatingsystem}.")
+            fail ("${title}: operating system '${::operatingsystem}' is not supported")
         }
 
     }
