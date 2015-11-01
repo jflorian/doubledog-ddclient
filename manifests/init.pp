@@ -31,15 +31,15 @@ class ddclient ( $content=undef ) {
         group   => 'ddclient',
         mode    => '0600',
         seltype => 'ddclient_etc_t',
-        content => "${content}",
+        content => $content,
     }
 
     service { $ddclient::params::service_name:
-        enable          => true,
-        ensure          => running,
-        hasrestart      => true,
-        hasstatus       => true,
-        subscribe       => [
+        enable     => true,
+        ensure     => running,
+        hasrestart => true,
+        hasstatus  => true,
+        subscribe  => [
             File['/etc/ddclient.conf'],
             Package[$ddclient::params::packages],
         ],
