@@ -1,7 +1,16 @@
 # modules/ddclient/manifests/init.pp
 #
-# Synopsis:
-#       Configures a host to run a ddclient daemon.
+# == Class: ddclient
+#
+# Manages the ddclient daemon on a host.
+#
+# === Authors
+#
+#   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2012-2017 John Florian
 
 
 class ddclient ( $content=undef ) {
@@ -12,26 +21,25 @@ class ddclient ( $content=undef ) {
         ensure  => installed,
     }
 
-    File {
-        seluser => 'system_u',
-        selrole => 'object_r',
-        subscribe => Package[$ddclient::params::packages],
-    }
-
-    file { '/etc/sysconfig/ddclient':
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0640',
-        seltype => 'etc_t',
-        source  => 'puppet:///modules/ddclient/sysconfig',
-    }
-
-    file { '/etc/ddclient.conf':
-        owner   => 'ddclient',
-        group   => 'ddclient',
-        mode    => '0600',
-        seltype => 'ddclient_etc_t',
-        content => $content,
+    file {
+        default:
+            seluser => 'system_u',
+            selrole => 'object_r',
+            subscribe => Package[$ddclient::params::packages],
+            ;
+        '/etc/sysconfig/ddclient':
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0640',
+            seltype => 'etc_t',
+            source  => 'puppet:///modules/ddclient/sysconfig',
+            ;
+        '/etc/ddclient.conf':
+            owner   => 'ddclient',
+            group   => 'ddclient',
+            mode    => '0600',
+            seltype => 'ddclient_etc_t',
+            content => $content,
     }
 
     service { $ddclient::params::service_name:
