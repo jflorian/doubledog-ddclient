@@ -15,11 +15,19 @@
 
 
 class ddclient (
-        String[1]               $content,
+        Array[String[1], 1]     $domains,
         Boolean                 $enable,
         Variant[Boolean, Enum['running', 'stopped']] $ensure,
+        String[1]               $identity,
+        Integer[1]              $interval,
+        String[1]               $password,
         Array[String[1], 1]     $packages,
+        String[1]               $protocol,
+        Optional[String[1]]     $server,
         String[1]               $service,
+        Boolean                 $ssl,
+        Boolean                 $syslog,
+        String[1]               $use,
     ) {
 
     package { $packages:
@@ -45,7 +53,7 @@ class ddclient (
             group     => 'ddclient',
             mode      => '0600',
             seltype   => 'ddclient_etc_t',
-            content   => $content,
+            content   => template('ddclient/ddclient.conf.erb'),
             show_diff => false,
     } ->
 

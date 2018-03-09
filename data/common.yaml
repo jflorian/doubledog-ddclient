@@ -5,6 +5,10 @@
 ---
 ddclient::enable:               true
 ddclient::ensure:               running
+ddclient::interval:             300
 ddclient::packages:
     - ddclient
+ddclient::server:               null
 ddclient::service:              ddclient
+ddclient::ssl:                  true
+ddclient::syslog:               true

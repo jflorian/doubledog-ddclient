@@ -54,17 +54,44 @@ This module lets you manage ddclient.
 
 This class manages ddclient.
 
+##### `domains` (required)
+An array of domains about which ddclient is providing IP address updates.  A minimum of one is required.
+
+##### `identity` (required)
+The login identity to be used to authenticate ddclient to the Dynamic DNS provider.
+
+##### `password` (required)
+The login password to be used to authenticate ddclient to the Dynamic DNS provider.
+
+##### `protocol` (required)
+The protocol to use to update the Dynamic DNS provider.  This value is not validated beyond enforcing a non-null string.
+
+##### `use` (required)
+The mechanism to be used for obtaining the IP address.  This value is not validated beyond enforcing a non-null string.  Example: `'if, if=eth0'`
+
 ##### `enable`
 Instance is to be started at boot.  Either `true` (default) or `false`.
 
 ##### `ensure`
 Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
 
+##### `interval`
+The period length in seconds that ddclient waits between checks for IP address changes.  The default is 300 seconds (5 minutes).
+
 ##### `packages`
 An array of package names needed for the ddclient installation.  The default should be correct for supported platforms.
 
+##### `server`
+The DNS hostname of the Dynamic DNS provider to be updated.  Not all providers require this.  The default or `undef` cause this to be ignored.
+
 ##### `service`
 The service name of the ddclient daemon.  The default should be correct for supported platforms.
+
+##### `ssl`
+Use SSL support.  Either `true` (default) or `false`.
+
+##### `syslog`
+Update messages are to be sent to the system logger.  Either `true` (default) or `false`.
 
 
 ### Defined types
