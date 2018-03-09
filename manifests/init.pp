@@ -41,11 +41,12 @@ class ddclient (
             source  => 'puppet:///modules/ddclient/sysconfig',
             ;
         '/etc/ddclient.conf':
-            owner   => 'ddclient',
-            group   => 'ddclient',
-            mode    => '0600',
-            seltype => 'ddclient_etc_t',
-            content => $content,
+            owner     => 'ddclient',
+            group     => 'ddclient',
+            mode      => '0600',
+            seltype   => 'ddclient_etc_t',
+            content   => $content,
+            show_diff => false,
     } ->
 
     service { $service:
