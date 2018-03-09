@@ -1,4 +1,3 @@
-# modules/ddclient/manifests/init.pp
 #
 # == Class: ddclient
 #
@@ -10,22 +9,29 @@
 #
 # === Copyright
 #
-# Copyright 2012-2017 John Florian
+# This file is part of the doubledog-ddclient Puppet module.
+# Copyright 2012-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
-class ddclient ( $content=undef ) {
+class ddclient (
+        String[1]               $content,
+        Boolean                 $enable,
+        Variant[Boolean, Enum['running', 'stopped']] $ensure,
+        Array[String[1], 1]     $packages,
+        String[1]               $service,
+    ) {
 
-    include 'ddclient::params'
-
-    package { $ddclient::params::packages:
-        ensure  => installed,
-    }
+    package { $packages:
+        ensure => installed,
+        notify => Service[$service],
+    } ->
 
     file {
         default:
             seluser => 'system_u',
             selrole => 'object_r',
-            subscribe => Package[$ddclient::params::packages],
+            notify  => Service[$service],
             ;
         '/etc/sysconfig/ddclient':
             owner   => 'root',
@@ -40,17 +46,13 @@ class ddclient ( $content=undef ) {
             mode    => '0600',
             seltype => 'ddclient_etc_t',
             content => $content,
-    }
+    } ->
 
-    service { $ddclient::params::service_name:
-        ensure     => running,
-        enable     => true,
+    service { $service:
+        ensure     => $ensure,
+        enable     => $enable,
         hasrestart => true,
         hasstatus  => true,
-        subscribe  => [
-            File['/etc/ddclient.conf'],
-            Package[$ddclient::params::packages],
-        ],
     }
 
 }

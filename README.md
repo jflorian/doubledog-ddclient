@@ -43,10 +43,28 @@ This module lets you manage ddclient.
 
 **Classes:**
 
+* [ddclient](#ddclient-class)
+
 **Defined types:**
 
 
 ### Classes
+
+#### ddclient class
+
+This class manages ddclient.
+
+##### `enable`
+Instance is to be started at boot.  Either `true` (default) or `false`.
+
+##### `ensure`
+Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
+
+##### `packages`
+An array of package names needed for the ddclient installation.  The default should be correct for supported platforms.
+
+##### `service`
+The service name of the ddclient daemon.  The default should be correct for supported platforms.
 
 
 ### Defined types
