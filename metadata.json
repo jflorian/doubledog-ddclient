@@ -1,13 +1,15 @@
 {
-	"name": "doubledog-ddclient",
-	"version": "1.0.0",
-	"author": "John Florian",
-	"license": "GPL-3.0",
-	"summary": "A module to manage ddclient",
-	"source": "https://www.doubledog.org/git/puppet-ddclient.git",
-	"operatingsystem_support": [{
-		"operatingsystem": "Fedora",
-		"operatingsystemrelease": ["26", "27"]
-	}],
-	"dependencies": []
+    "name": "doubledog-ddclient",
+    "version": "1.0.0",
+    "author": "John Florian",
+    "summary": "A module to manage ddclient",
+    "license": "GPL-3.0",
+    "source": "https://github.com/jflorian/doubledog-ddclient",
+    "project_page": "https://github.com/jflorian/doubledog-ddclient",
+    "issues_url": "https://github.com/jflorian/doubledog-ddclient/issues",
+    "operatingsystem_support": [{
+        "operatingsystem": "Fedora",
+        "operatingsystemrelease": ["26", "27"]
+    }],
+    "dependencies": []
 }
